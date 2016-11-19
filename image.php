@@ -1,7 +1,5 @@
 <?php
 
-require 'mysql.php';
-
 function add_image($image_name) {
     $conn = sql_connection();
     $stmt = $conn->prepare("INSERT INTO images VALUES ('DEFAULT',?,?,?,?)");

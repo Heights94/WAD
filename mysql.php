@@ -1,5 +1,9 @@
 <?php
 
+require ("account.php");
+require ("email.php");
+require ("image.php");
+require ("property.php");
 require ("PassHash.php");
 require ("validation.php");
 

@@ -1,11 +1,7 @@
 <?php
-require 'mysql_connections.php';
-//require 'captcha.php';
-
-//if(!isset($_SESSION['user'])){
-//    echo "Please login in first.";
-//}
-//exit;
+session_start();
+    header("Location: browse.php"); //..redirect them to browse.php.
+}
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
@@ -64,8 +60,8 @@ and open the template in the editor.
                 <input type="submit" name="verify" value="Submit"></input><br/>
             </form>
         </div>
-        
-          
+
+
     </body>
 
 </html>

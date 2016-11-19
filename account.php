@@ -1,6 +1,5 @@
 <?php
 
-require 'mysql.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -36,12 +35,13 @@ function login_user($username, $password) {
     if ((PassHash::check_password($assoc['Password_'], $password))) {
         $_SESSION['user'] = $username;
         $_SESSION['userid'] = $assoc['id'];
+        $_SESSION['verificationCode'] = $assoc['vCode'];
         setcookie('username', $username, time() + (86400 * 30), "/"); // 86400 = 1 day
         if ($assoc['vCode'] !== '0') {
             header("Location: verification.php");
             exit;
         } else {
-            header("Location: propertylist.php");
+            header("Location: browse.php");
             exit;
         }
     } else {
