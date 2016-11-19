@@ -1,5 +1,4 @@
 <?php
-require 'mysql_connections.php';
 //require 'captcha.php';
 session_start();
 echo "Welcome " . $_SESSION['user'];
