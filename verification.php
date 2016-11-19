@@ -1,5 +1,6 @@
 <?php
 session_start();
+if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] === '0') {//If the user is logged in, and if they are a verified user already..
     header("Location: browse.php"); //..redirect them to browse.php.
 }
 ?>
