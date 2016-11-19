@@ -89,14 +89,6 @@ function sql_connection() {
 }
 
 function browse($iterator) {
-//    $conn = sql_connection();
-//    $stmt = count_pages($conn);
-////    $stmt = $conn->prepare("Select * from Property");
-////    $stmt->execute();
-//    $result = $stmt->get_result();
-//    $assoc = $result->fetch_assoc();//do while loop print table
-// "
-//    $table = " <form action='mysql.php' method='post'>";
     $table = "<div><br/><div id='property_image'>";
     $images = get_image($iterator['id']);
     for ($i = 0; $i < count($images); $i++) {
@@ -105,12 +97,11 @@ function browse($iterator) {
             $table.= "<img src='" . $images[$i]['img'] . "'/>";
         }
     }
-    $table.= "</div><br/>"/* ."<label>ID:</label>" . $assoc['id'] . "<br/>" */
+    $table.= "</div><br/>"
             . "<label>Area:</label>" . $iterator['Area'] . "<br/>"
             . "<label>Address:</label>" . $iterator['Address'] . "<br/>"
             . "<label>Bedrooms:</label>s" . $iterator['Bedrooms'] . "<br/>"
             . "<label>Rate:</label>" . $iterator['Rate'] . "<br/>";
-//                . "<td><input type='radio' name='radio' value='" . $assoc['id'] . "'/><br/>";
 
     $table.= "</div>";
 
@@ -136,10 +127,8 @@ function count_pages($like_clause) {
 
         $result->execute();
         $total = $result->get_result();
-//    if ($result->num_rows > 2) {
-        // How many items to list per page
         $limit = 5;
-//     echo $total->num_rows;
+        
         // How many pages will there be
         $pages = ceil($total->num_rows / $limit);
 
