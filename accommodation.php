@@ -1,16 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['user'])) { 
-    echo "User " . $_SESSION['user'] . " is logged in <br/>";   
-    echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
-//    get_propertyid($_SESSION['userid']);
-//    view_property($_SESSION['userid']);
-} else {    
-     header("Location: login.php");
-     exit;
-//    echo "UserID: " . $_SESSION["userid"] . " <br/>";
-//    echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
+if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
+    header("Location: verification.php"); //..redirect them to verification.php.
+    exit;
+} else if(!isset($_SESSION['user'])){//If the user is not logged in..
+    header("Location: login.php");//..redirect them to login.php
+    exit;
 }
+unset($_SESSION['propertyid']);
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--

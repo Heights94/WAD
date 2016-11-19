@@ -1,16 +1,23 @@
 <?php
 require 'mysql.php'; //Always has property id when editing image.
-$assoc = get_image($_SESSION['propertyid']); //needs error checking
+$assoc = get_image($_SESSION['propertyid']); //needs error checking, displays images for property
 //var_dump($assoc);
-if (isset($_SESSION["userid"]) && !isset($_SESSION['propertyid'])) { //If the user is logged in, has just added a property, and wants to upload an image.
-    get_propertyid($_SESSION["userid"]); //Get the property for the logged in user. THIS IS THE ONLY PLACE THIS IS REQUIRED.
-} else if (!isset($_SESSION["userid"])) { //Trying to access page without logging in. 
-    echo "Please login first to upload an image.";
-    return;
-} else { //User already has logged in, and has property id, most likely here to add/delete an image. 
-    echo "UserID: " . $_SESSION["userid"] . " <br/>";
-    echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
+if(empty($assoc)){//Propertyid is unset on browse.php, propertylist.php and accommodation.php (since they're the only pages accessible as a logged in user. )
+     header("Location: propertylist.php"); //..redirect them to login.php
+    exit;
 }
+if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
+    header("Location: verification.php"); //..redirect them to verification.php.
+    exit;
+} else if (!isset($_SESSION['user'])) {//If the user is not logged in..
+    header("Location: login.php"); //..redirect them to login.php
+    exit;
+} else if (!isset($_SESSION['propertyid'])) {//If the user has just added a property, and wants to upload an image for it..
+    get_propertyid($_SESSION["userid"]); //..get the property for the last logged in user. THIS IS THE ONLY PLACE THIS IS REQUIRED.
+}
+
+echo "UserID: " . $_SESSION["userid"] . " <br/>";
+echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
@@ -79,8 +86,8 @@ and open the template in the editor.
             <br/><input type="submit" name="delete_image" value="Delete"></input><br/>
         </form>
         <!--        
-                <img src="<?php // echo $assoc['img'];  ?>" width="10%" height="10%"/><br/>
-                <input type='radio' name='radio' value='<?php // echo $assoc['id'];  ?>"'/>-->
+                <img src="<?php // echo $assoc['img'];     ?>" width="10%" height="10%"/><br/>
+                <input type='radio' name='radio' value='<?php // echo $assoc['id'];     ?>"'/>-->
 
 
         <div id="register">

@@ -1,16 +1,16 @@
 <?php
 require 'mysql.php';
-//require 'captcha.php';
-if (isset($_SESSION["userid"]) && isset($_SESSION["propertyid"])) {//If the user is logged in and they have the propertyid, feel free to edit.
-    echo "User " . $_SESSION['user'] . " is logged in <br/>";
-    echo "PropertyID: " . $_SESSION["propertyid"];//The propertyid session is set before coming to this page in mysql.php.
-//    view_property($_SESSION['userid']);
-    $assoc = get_property($_SESSION["propertyid"]); //Get the Property details and displays them within the input fields. DO NOT GET THIS FUNCTION MIXED UP get_propertyid().
-} else if (isset($_SESSION["userid"]) && !isset($_SESSION["propertyid"])) {//If user is logged in but they don't have a propertyid from url jumping, send them back to propertylist.
-     header("Location: propertylist.php");
-     exit;
-} else {
-    
+if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
+    header("Location: verification.php"); //..redirect them to verification.php.
+    exit;
+} else if (!isset($_SESSION['user'])) {//If the user is not logged in..
+    header("Location: login.php"); //..redirect them to login.php
+    exit;
+} else if (!isset($_SESSION["propertyid"])) {//But if they don't have a propertyid from url jumping, send them back to propertylist.
+    header("Location: propertylist.php");
+    exit;
+} else {//If the user is logged in and they have the propertyid..
+    $assoc = get_property($_SESSION["propertyid"]); //Get the Property details and display them within the input fields. DO NOT GET THIS FUNCTION MIXED UP with get_propertyid().
 }
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
@@ -69,11 +69,11 @@ and open the template in the editor.
                 <label>Area</label><input id="carrier_search_input" type="text"  name="area" value="<?php echo $assoc['Area']; ?>" oninput="data_input(this)"/> <br/>
                 <label>Address</label><input id="carrier_search_input"  name="address" value="<?php echo $assoc['Address']; ?>" oninput="data_input(this)"/> <br/>
                 <label>Number of rooms</label><select name="rooms" >
-                    <?php for ($i = 1; $i <= $assoc['Bedrooms'] - 1; $i++) { //Just before we get to our value ?> 
+                    <?php for ($i = 1; $i <= $assoc['Bedrooms'] - 1; $i++) { //Just before we get to our value  ?> 
                         <option value="<?php echo $i; ?>" ><?php echo $i; ?></option>
                     <?php } ?>
                     <option value="<?php echo $assoc['Bedrooms']; ?>" selected="<?php echo $assoc['Bedrooms']; ?>"><?php echo $assoc['Bedrooms']; ?></option>
-                    <?php for ($i = $assoc['Bedrooms'] + 1; $i <= 10; $i++) { //Continue from after our added value ?>
+                    <?php for ($i = $assoc['Bedrooms'] + 1; $i <= 10; $i++) { //Continue from after our added value  ?>
                         <option value="<?php echo $i; ?>" ><?php echo $i; ?></option>
                     <?php } ?>
                 </select> <br/>

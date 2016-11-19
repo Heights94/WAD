@@ -3,8 +3,9 @@
 session_start();
 echo "Welcome " . $_SESSION['user'];
 
-if (isset($_SESSION['user'])) {
-    header("Location: propertylist.php");
+if (isset($_SESSION['user'])) {//If already logged in, redirect to browse.php.
+    header("Location: browse.php");
+    exit;
 }
 ?>
 <?xml version="1.0" encoding="UTF-8"?>

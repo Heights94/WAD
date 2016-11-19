@@ -1,7 +1,12 @@
 <?php
 session_start();
+/* Checking user status here is unique, since a verified user has no purpose to verify themselves again. */
 if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] === '0') {//If the user is logged in, and if they are a verified user already..
     header("Location: browse.php"); //..redirect them to browse.php.
+    exit;
+} else if(!isset($_SESSION['user'])){//If the user is not logged in..
+    header("Location: login.php");//..redirect them to login.php
+    exit;
 }
 ?>
 <?xml version="1.0" encoding="UTF-8"?>

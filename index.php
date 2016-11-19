@@ -2,6 +2,7 @@
 session_start();
 if (isset($_SESSION['user'])) {//If already logged in, redirect to browse.php.
     header("Location: browse.php");
+    exit;
 }
 
 // echo substr(sha1(uniqid(rand())), 1,5);  
