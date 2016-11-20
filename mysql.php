@@ -63,6 +63,8 @@ if (isset($_POST["delete_image"])) {//needs validation
     if (isset($_POST["image_radio"])) {
         delete_image($_POST["image_radio"]);
         echo "Image deleted";
+    } else {
+        echo "No image has been selected";
     }
 }
 
