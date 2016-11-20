@@ -74,4 +74,6 @@ function delete_property($propertyid) {
     $stmt->execute();
 }
 
+
+
 ?>

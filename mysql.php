@@ -52,10 +52,13 @@ if (isset($_POST["update"])) {
 if (isset($_POST["delete"])) {
     if (isset($_POST["radio"])) {
 //check what the session is equal to!
+        delete_property_images(get_image($_POST["radio"]));//Deletes all images associated to a property first.
         delete_property($_POST["radio"]);
 //         echo "User id is " . $_SESSION['userid'] . " Property id is " . $_SESSION['propertyid'];
         header("Location: propertylist.php");
         exit;
+    } else {
+        echo "Please select a Property first";
     }
 }
 
@@ -70,12 +73,14 @@ if (isset($_POST["delete_image"])) {//needs validation
 
 
 
-if (isset($_POST["edit"])) {
+if (isset($_POST["edit"])) {//If a property was selected when clicking edit..
     if (isset($_POST["radio"])) {
         $_SESSION["propertyid"] = $_POST["radio"];
         header("Location: accommodation_update.php");
         exit;
 //    update_details();
+    } else {
+        echo "Please select a Property first";
     }
 }
 

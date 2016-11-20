@@ -79,7 +79,7 @@ and open the template in the editor.
 
         <form action="mysql.php" method="post" enctype="multipart/form-data">
             <?php
-            if (isset($_SESSION['propertyid'])) {
+            if (isset($_SESSION['propertyid']) && !empty($assoc)) {
 //        var_dump($assoc[0]['img']); 
                 for ($i = 0; $i < count($assoc); $i++) {
 //            var_dump($assoc[$i]['img']); 

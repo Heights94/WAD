@@ -50,4 +50,10 @@ function delete_image($img) {
     unlink($img);
 }
 
+function delete_property_images($images) {
+    for ($i = 0; $i < count($images); $i++) {
+        delete_image($images[$i]['img']);
+    }
+}
+
 ?>
