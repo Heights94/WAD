@@ -85,8 +85,9 @@ and open the template in the editor.
 //            var_dump($assoc[$i]['img']); 
                     echo "<br/><input type='radio' name='image_radio' value='" . $assoc[$i]['img'] . "'/>";
                     echo "<img src='" . $assoc[$i]['img'] . "' alt='" . $assoc[$i]['alt'] . "'width='10%' height='10%'/>";
-                    echo "<br/><input type='submit' name=#delete_image' value='Delete'></input><br/>";
+               
                 }
+                     echo "<br/><input type='submit' name=#delete_image' value='Delete'></input><br/>";
             }
 //        echo "<img src=$image width='10%' height='10%'/><br/>";
             ?> 
