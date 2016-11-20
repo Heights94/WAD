@@ -11,9 +11,9 @@ function add_property() {
     $stmt = $conn->prepare("INSERT INTO Property VALUES ('DEFAULT',?,?,?,?,?)");
     $stmt->bind_param('issid', $_SESSION['userid'], $_POST['area'], $_POST['address'], $_POST['rooms'], $_POST['rate']);
     if ($stmt->execute()) {
-        header("Location: propertylist.php");
+        $_SESSION['propertyAdded'] = true;
+        header("Location: image_upload.php");
         exit;
-        echo "New record created successfully";
     } else {
         echo "Error: <br>" . $conn->error;
     }

@@ -12,6 +12,8 @@ if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0
 } else {//If the user is logged in and they have the propertyid..
     $assoc = get_property($_SESSION["propertyid"]); //Get the Property details and display them within the input fields. DO NOT GET THIS FUNCTION MIXED UP with get_propertyid().
 }
+unset($_SESSION['propertySelected']);
+unset($_SESSION['propertyAdded']);
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--

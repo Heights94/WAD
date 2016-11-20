@@ -28,13 +28,14 @@ function verify_code($username, $verification_code) {
     $assoc = $result->fetch_assoc();
     if ($assoc['vCode'] === $verification_code) {
         user_verified($conn, $username, $verification_code);
+        $_SESSION['verificationCode'] = '0';
         echo "User is now verified!";
         return false;
     } else if ($assoc['vCode'] === '0') {
         echo "User has already been verified";
         return true;
     } else {
-        echo $_SESSION['user'];
+        echo "Incorrect verification code entered.";
         return true;
     }
 }

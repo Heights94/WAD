@@ -3,7 +3,7 @@
 function validate_name() {
     $name = $_POST["userName"];
     if (!preg_match("/^[a-zA-Z0-9]*$/", $name) || $name === '') {
-        echo "Only letters/numbers and white space allowed";
+        echo "Only usernames with letters/numbers and white space are allowed<br/>";
         return false;
     } else {
 //        echo "Good job!";
@@ -14,7 +14,7 @@ function validate_name() {
 function validate_password() {
     $password = $_POST["password"];
     if (!preg_match("/^[a-zA-Z0-9\!]*$/", $password) || $password === '') {
-        echo "Only letters, numbers and ! is allowed";
+        echo "Only passwords with letters, numbers and ! are allowed<br/>";
         return false;
     } else {
 //        echo "Good job!";
@@ -25,7 +25,7 @@ function validate_password() {
 function validate_email() {
     $email = $_POST["email"];
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "Invalid email format";
+        echo "Invalid email format<br/>";
         return false;
     } else {
         return true;
@@ -34,17 +34,17 @@ function validate_email() {
 
 function validate_captcha() {
     if ($_POST["captcha"] != "" && $_SESSION["code"] == $_POST["captcha"]) {
-        echo "Correct captcha code entered";
+        echo "Correct captcha code entered<br/>";
         return true;
     } else {
-        echo "Incorrect captcha code entered";
+        echo "Incorrect captcha code entered<br/>";
         return false;
     }
 }
 
 function validate_property_fields($var) {
     if (!preg_match("/^[a-zA-Z0-9 \'-]*$/", $var) || $var === '') {
-        echo "Only letters, numbers and -' is allowed";
+        echo "Only letters, numbers, - and ' are allowed";
         return false;
     } else {
 //        echo "Good job!";
@@ -53,8 +53,8 @@ function validate_property_fields($var) {
 }
 
 function validate_rate(){
-    if (!preg_match("/^[0-9]*$/", $_POST["rate"]) || $_POST["rate"] === '') {
-        echo "Only numbers are allowed";
+    if (!preg_match("/^[0-9]+(\.[0-9]{1,2})?$/", $_POST["rate"]) || $_POST["rate"] === '') {
+        echo "Only numbers between 0.00 to 9999.99 are allowed for the Weekly rate";
         return false;
     } else {
 //        echo "Good job!";

@@ -3,11 +3,13 @@ require 'mysql.php';
 if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
     header("Location: verification.php"); //..redirect them to verification.php.
     exit;
-} else if(!isset($_SESSION['user'])){//If the user is not logged in..
-    header("Location: login.php");//..redirect them to login.php
+} else if (!isset($_SESSION['user'])) {//If the user is not logged in..
+    header("Location: login.php"); //..redirect them to login.php
     exit;
 }
 unset($_SESSION['propertyid']);
+unset($_SESSION['propertySelected']);
+unset($_SESSION['propertyAdded']);
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
@@ -45,19 +47,19 @@ and open the template in the editor.
         </div>
         <a href="accommodation.php">Add new Property</a>
         <h3>View Properties</h3>
-<?php
-if (isset($_SESSION['user'])) {
-    //NOTE: IN THE FUTURE, LOGIN WILL TAKE YOU TO THE BROWSE PAGE. 
-    $_SESSION["propertyid"] = null; // LOGIN,VERIFICATION, IMAGE UPLOAD, ACCOMDATION ADD AND UPDATE ALL LINK BACK TO HERE AT THE MOMENT, NEED A WAY TO CLEAR PROPERTYID SESSION. 
-    echo "User " . $_SESSION['user'] . " is logged in <br/>";
-    echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
+        <?php
+        if (isset($_SESSION['user'])) {
+            //NOTE: IN THE FUTURE, LOGIN WILL TAKE YOU TO THE BROWSE PAGE. 
+            $_SESSION["propertyid"] = null; // LOGIN,VERIFICATION, IMAGE UPLOAD, ACCOMDATION ADD AND UPDATE ALL LINK BACK TO HERE AT THE MOMENT, NEED A WAY TO CLEAR PROPERTYID SESSION. 
+            echo "User " . $_SESSION['user'] . " is logged in <br/>";
+            echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
 //    get_propertyid($_SESSION['userid']);
-    view_property($_SESSION['userid']);
-} else {
-    echo "UserID: " . $_SESSION["userid"] . " <br/>";
-    echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
-}
-?>
+            view_property($_SESSION['userid']);
+        } else {
+            echo "UserID: " . $_SESSION["userid"] . " <br/>";
+            echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
+        }
+        ?>
 
     </body>
 

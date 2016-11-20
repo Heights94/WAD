@@ -79,6 +79,7 @@ if (isset($_POST["edit"])) {
 
 if (isset($_POST["manage_images"])) {
     $_SESSION["propertyid"] = $_POST["radio"];
+    $_SESSION["propertySelected"] = true;
     header("Location: image_upload.php");
     exit;
 }

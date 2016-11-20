@@ -1,18 +1,24 @@
 <?php
 require 'mysql.php'; //Always has property id when editing image.
-$assoc = get_image($_SESSION['propertyid']); //needs error checking, displays images for property
-//var_dump($assoc);
-if(empty($assoc)){//Propertyid is unset on browse.php, propertylist.php and accommodation.php (since they're the only pages accessible as a logged in user. )
-     header("Location: propertylist.php"); //..redirect them to login.php
-    exit;
+if (isset($_SESSION['propertyid'])) {
+    $assoc = get_image($_SESSION['propertyid']); //needs error checking, displays images for property
 }
+//var_dump($assoc);
+
 if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
     header("Location: verification.php"); //..redirect them to verification.php.
     exit;
 } else if (!isset($_SESSION['user'])) {//If the user is not logged in..
     header("Location: login.php"); //..redirect them to login.php
     exit;
-} else if (!isset($_SESSION['propertyid'])) {//If the user has just added a property, and wants to upload an image for it..
+    //IF THERE IS A PROPERTYID LEGALLY, BUT JUST NO IMAGES UPLOADED.
+} else if (!isset($_SESSION['propertySelected']) && !isset($_SESSION['propertyAdded'])) {//If the user tries to access this page by jumping to this url..
+    header("Location: propertylist.php"); //..redirect them to propertylist.php
+    exit;
+} else if (isset($_SESSION['propertySelected']) && !isset($_SESSION['propertyid']) && !isset($_SESSION['propertyAdded'])) {//If the button Manage images is clicked, but no radio button has been selected, and a new property has been added..
+    header("Location: propertylist.php"); //..redirect them to propertylist.php
+    exit;
+} else if (isset($_SESSION['propertyAdded'])) {//If the user has just added a property, and wants to upload an image for it..
     get_propertyid($_SESSION["userid"]); //..get the property for the last logged in user. THIS IS THE ONLY PLACE THIS IS REQUIRED.
 }
 
@@ -73,21 +79,22 @@ and open the template in the editor.
 
         <form action="mysql.php" method="post" enctype="multipart/form-data">
             <?php
+            if (isset($_SESSION['propertyid'])) {
 //        var_dump($assoc[0]['img']); 
-            for ($i = 0; $i < count($assoc); $i++) {
+                for ($i = 0; $i < count($assoc); $i++) {
 //            var_dump($assoc[$i]['img']); 
-                echo "<br/><input type='radio' name='image_radio' value='" . $assoc[$i]['img'] . "'/>";
-                echo "<img src='" . $assoc[$i]['img'] . "' alt='" . $assoc[$i]['alt'] . "'width='10%' height='10%'/>";
+                    echo "<br/><input type='radio' name='image_radio' value='" . $assoc[$i]['img'] . "'/>";
+                    echo "<img src='" . $assoc[$i]['img'] . "' alt='" . $assoc[$i]['alt'] . "'width='10%' height='10%'/>";
+                    echo "<br/><input type='submit' name=#delete_image' value='Delete'></input><br/>";
+                }
             }
-
 //        echo "<img src=$image width='10%' height='10%'/><br/>";
             ?> 
 
-            <br/><input type="submit" name="delete_image" value="Delete"></input><br/>
         </form>
         <!--        
-                <img src="<?php // echo $assoc['img'];     ?>" width="10%" height="10%"/><br/>
-                <input type='radio' name='radio' value='<?php // echo $assoc['id'];     ?>"'/>-->
+                <img src="<?php // echo $assoc['img'];        ?>" width="10%" height="10%"/><br/>
+                <input type='radio' name='radio' value='<?php // echo $assoc['id'];        ?>"'/>-->
 
 
         <div id="register">

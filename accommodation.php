@@ -3,11 +3,14 @@ session_start();
 if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0') {//If the user is logged in, and if they are NOT a verified user..
     header("Location: verification.php"); //..redirect them to verification.php.
     exit;
-} else if(!isset($_SESSION['user'])){//If the user is not logged in..
-    header("Location: login.php");//..redirect them to login.php
+} else if (!isset($_SESSION['user'])) {//If the user is not logged in..
+    header("Location: login.php"); //..redirect them to login.php
     exit;
 }
+
 unset($_SESSION['propertyid']);
+unset($_SESSION['propertySelected']);
+unset($_SESSION['propertyAdded']);
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--

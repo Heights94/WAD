@@ -1,6 +1,8 @@
 <?php
 require 'mysql.php';
 unset($_SESSION['propertyid']);
+unset($_SESSION['propertySelected']);
+unset($_SESSION['propertyAdded']);
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
