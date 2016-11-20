@@ -6,12 +6,11 @@
  * and open the template in the editor.
  */
 
-function send_email($confirm_code) {
-    $to = 'mohammed_omar94@hotmail.co.uk';
+function send_email($confirm_code,$username) {
+    $to = get_email($username);
     $subject = "Your verification code";
-    $message = "The verification code for your account is $confirm_code";
+    $message = "The verification code for $username is $confirm_code";
     $headers = "from: Brighton & Hove Agency <haitsu1994@gmail.com>";
-
     if (mail($to, $subject, $message, $headers)) {
         echo 'Email sent successfully!';
     } else {
@@ -44,6 +43,16 @@ function user_verified($conn, $username, $verification_code) {
     $stmt = $conn->prepare("Update reg_users set vCode = 0 where Username = ? and vCode = ?");
     $stmt->bind_param('ss', $username, $verification_code);
     $stmt->execute();
+}
+
+function get_email($username){  
+    $conn = sql_connection();
+    $stmt = $conn->prepare("Select * from reg_users where Username = ?");
+    $stmt->bind_param('s', $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $assoc = $result->fetch_assoc();
+    return $assoc['Email'];
 }
 
 ?>
