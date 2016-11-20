@@ -6,7 +6,7 @@ function add_image($image_name) {
     $img = "./uploads/$image_name";
     $stmt->bind_param('isss', $_SESSION['propertyid'], $image_name, $_POST['alt_text'], $img);
     if ($stmt->execute()) {
-        header("Location: propertylist.php");
+        header("Location: image_upload.php");
         exit;
         echo "New record created successfully";
     } else {
