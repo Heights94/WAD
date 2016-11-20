@@ -21,10 +21,8 @@ function check_image_count($propertyid) {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 2) {
-        echo "Three images already uploaded!";
         return false;
     } else {
-        echo "Image has been uploaded!";
         return true;
     }
 }

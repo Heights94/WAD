@@ -44,7 +44,6 @@ if (isset($_POST["submit"])) {
 if (isset($_POST["update"])) {
     if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"])) {
         update_property($_SESSION["propertyid"]);
-
         header("Location: propertylist.php");
     }
 }

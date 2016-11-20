@@ -64,8 +64,8 @@ function validate_rate(){
 
 function validate_alt() {
     $image_description = $_POST["alt_text"];
-    if (!preg_match("/^[a-zA-Z0-9\!]*$/", $image_description) || $image_description === '') {
-        echo "Only letters, numbers and ! is allowed";
+    if (!preg_match("/^[a-zA-Z0-9\!. ]*$/", $image_description) || $image_description === '') {
+        echo "Please add a appropiate description<br/>";
         return false;
     } else {
 //        echo "Good job!";
