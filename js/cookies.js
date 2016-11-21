@@ -37,7 +37,7 @@ function deleteCookie(username) {
     }
 }
 
-function ajax_login() {
+function ajax_login2() {
     var username = $("#userName").val();//The value from the environment dropdown will determine which table in MySQL to look in. 
     var password = $("#password").val();
     $.ajax({
