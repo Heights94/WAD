@@ -41,10 +41,12 @@ function login_user($username, $password) {
             exit;
         } else {
             header("Location: browse.php");
+            mysqli_close($conn);
             exit;
         }
     } else {
         echo "Incorrect Username or Password entered.";
+        mysqli_close($conn);
     }
 }
 
@@ -56,9 +58,11 @@ function new_username($username) {
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
         echo "Username already exists!";
+        mysqli_close($conn);
         return false;
     } else {
         echo "Username has been created!";
+        mysqli_close($conn);
         return true;
     }
 }
@@ -74,6 +78,7 @@ function captcha() {
     }
 }
 
+/* Unused */
 function update_details($userid, $verification_code) {//return array, use array for values in accom_update.
     $stmt = $conn->prepare("Update reg_users set Username = ?, Password_ = ?, Email = ? where id = ?;");
     $stmt->bind_param('ssi', $username, $verification_code);

@@ -29,12 +29,15 @@ function verify_code($username, $verification_code) {
         user_verified($conn, $username, $verification_code);
         $_SESSION['verificationCode'] = '0';
         echo "User is now verified!";
+        mysqli_close($conn);
         return false;
     } else if ($assoc['vCode'] === '0') {
         echo "User has already been verified";
+        mysqli_close($conn);
         return true;
     } else {
         echo "Incorrect verification code entered.";
+        mysqli_close($conn);
         return true;
     }
 }
@@ -52,6 +55,7 @@ function get_email($username){
     $stmt->execute();
     $result = $stmt->get_result();
     $assoc = $result->fetch_assoc();
+    mysqli_close($conn);
     return $assoc['Email'];
 }
 

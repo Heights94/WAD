@@ -7,10 +7,11 @@ function add_image($image_name) {
     $stmt->bind_param('isss', $_SESSION['propertyid'], $image_name, $_POST['alt_text'], $img);
     if ($stmt->execute()) {
         header("Location: image_upload.php");
+        mysqli_close($conn);
         exit;
-        echo "New record created successfully";
     } else {
         echo "Error: <br>" . $conn->error;
+        mysqli_close($conn);
     }
 }
 
@@ -21,8 +22,10 @@ function check_image_count($propertyid) {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 2) {
+        mysqli_close($conn);
         return false;
     } else {
+        mysqli_close($conn);
         return true;
     }
 }
@@ -37,6 +40,7 @@ function get_image($propertyid) {
     while ($row = $result->fetch_assoc()) {
         $assoc[] = $row;
     }
+    mysqli_close($conn);
     return $assoc;
 }
 
@@ -46,6 +50,7 @@ function delete_image($img) {
     $stmt->bind_param('s', $img);
     $stmt->execute();
     unlink($img);
+    mysqli_close($conn);
 }
 
 function delete_property_images($images) {

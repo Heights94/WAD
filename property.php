@@ -13,9 +13,11 @@ function add_property() {
     if ($stmt->execute()) {
         $_SESSION['propertyAdded'] = true;
         header("Location: image_upload.php");
+        mysqli_close($conn);
         exit;
     } else {
         echo "Error: <br>" . $conn->error;
+        mysqli_close($conn);
     }
 }
 
@@ -35,6 +37,7 @@ function view_property($userid) {
     }
     $table.= "</tbody></table> </form>";
     echo "$table";
+    mysqli_close($conn);
 }
 
 /* Property id of last added property */
@@ -48,6 +51,7 @@ function get_propertyid($userid) {
     $assoc = $result->fetch_assoc();
     $_SESSION['propertyid'] = $assoc['id'];
     echo "Propery id is  " . $_SESSION['propertyid'] . ".";
+    mysqli_close($conn);
 }
 
 function get_property($propertyid) {
@@ -57,6 +61,7 @@ function get_property($propertyid) {
     $stmt->execute();
     $result = $stmt->get_result();
     $assoc = $result->fetch_assoc();
+    mysqli_close($conn);
     return $assoc;
 }
 
@@ -65,6 +70,7 @@ function update_property($propertyid) {//return array, use array for values in a
     $stmt = $conn->prepare("Update Property set Area = ?, Address = ?, Bedrooms = ?, Rate = ? where id = ?;");
     $stmt->bind_param('ssidi', $_POST['area'], $_POST['address'], $_POST['rooms'], $_POST['rate'], $propertyid);
     $stmt->execute();
+    mysqli_close($conn);
 }
 
 function delete_property($propertyid) {
@@ -72,6 +78,7 @@ function delete_property($propertyid) {
     $stmt = $conn->prepare("Delete from Property where id = ? and user_id = ?");
     $stmt->bind_param('ii', $propertyid, $_SESSION['userid']);
     $stmt->execute();
+    mysqli_close($conn);
 }
 
 

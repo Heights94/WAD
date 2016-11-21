@@ -194,8 +194,10 @@ function count_pages($like_clause) {
                 $table = browse($iterator); //MAKE ANOTHER FILE TO ECHO RESULTS
                 echo $table;
             }
+            mysqli_close($dbh);
         } else {
             echo '<p>No results could be displayed.</p>';
+            mysqli_close($dbh);
         }
     } catch (Exception $e) {
         echo '<p>', $e->getMessage(), '</p>';
@@ -211,6 +213,7 @@ function all_image($propertyid) {
     while ($row = $result->fetch_assoc()) {
         $assoc[] = $row;
     }
+    mysqli_close($conn);
     return $assoc;
 }
 
