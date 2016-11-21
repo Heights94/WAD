@@ -34,7 +34,7 @@ if (isset($_POST["login"])) {
 }
 
 if (isset($_POST["submit"])) {
-    if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"])) {
+    if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"]) && new_property($_POST["address"])) {
         add_property();
     }
 }
@@ -42,16 +42,16 @@ if (isset($_POST["submit"])) {
 
 
 if (isset($_POST["update"])) {
-    if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"])) {
-        update_property($_SESSION["propertyid"]);
-        header("Location: propertylist.php");
+    if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"]) && new_property($_POST["address"])) {
+            update_property($_SESSION["propertyid"]);
+            header("Location: propertylist.php");
     }
 }
 
 if (isset($_POST["delete"])) {
     if (isset($_POST["radio"])) {
 //check what the session is equal to!
-        delete_property_images(get_image($_POST["radio"]));//Deletes all images associated to a property first.
+        delete_property_images(get_image($_POST["radio"])); //Deletes all images associated to a property first.
         delete_property($_POST["radio"]);
 //         echo "User id is " . $_SESSION['userid'] . " Property id is " . $_SESSION['propertyid'];
         header("Location: propertylist.php");
@@ -69,8 +69,6 @@ if (isset($_POST["delete_image"])) {//needs validation
         echo "No image has been selected";
     }
 }
-
-
 
 if (isset($_POST["edit"])) {//If a property was selected when clicking edit..
     if (isset($_POST["radio"])) {
@@ -139,7 +137,7 @@ function count_pages($like_clause) {
         $result->execute();
         $total = $result->get_result();
         $limit = 5;
-        
+
         // How many pages will there be
         $pages = ceil($total->num_rows / $limit);
 

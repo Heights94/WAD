@@ -9,7 +9,7 @@ if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0
 } else if (!isset($_SESSION["propertyid"])) {//But if they don't have a propertyid from url jumping, send them back to propertylist.
     header("Location: propertylist.php");
     exit;
-} else {//If the user is logged in and they have the propertyid..
+} else {//If the user is logged in and they have the propertyid from clicking edit..
     $assoc = get_property($_SESSION["propertyid"]); //Get the Property details and display them within the input fields. DO NOT GET THIS FUNCTION MIXED UP with get_propertyid().
 }
 unset($_SESSION['propertySelected']);

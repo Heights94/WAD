@@ -21,6 +21,30 @@ function add_property() {
     }
 }
 
+function new_property($address) {//In the case of update, the address is from the database
+    $conn = sql_connection();
+    $stmt = $conn->prepare("Select * from Property where Address = ?");
+    $stmt->bind_param('s', $address);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $assoc = $result->fetch_assoc();
+    if ($result->num_rows > 0) {//If another property with the address already exists..     
+        //Needs to be used for comparison
+        if (isset($_SESSION['propertyid']) && $assoc['id'] === intval($_SESSION['propertyid'])) {//..and the address of the property being updated belongs to the user
+            mysqli_close($conn);
+            return true;//Allow them to update or reuse the address without any problems
+        } else {//If they don't own the property, that means they cannot use the address
+            echo "Address already in use.";
+            mysqli_close($conn);
+            return false;
+        }
+    } else {//If no other property with the address exists..
+        echo "Address has been created!";//..allow property to be added.
+        mysqli_close($conn);
+        return true;
+    }
+}
+
 function view_property($userid) {
     $conn = sql_connection();
     $stmt = $conn->prepare("Select * from Property where user_id = ?");
@@ -80,7 +104,5 @@ function delete_property($propertyid) {
     $stmt->execute();
     mysqli_close($conn);
 }
-
-
 
 ?>
