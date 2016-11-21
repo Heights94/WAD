@@ -79,7 +79,7 @@ and open the template in the editor.
                         <option value="<?php echo $i; ?>" ><?php echo $i; ?></option>
                     <?php } ?>
                 </select> <br/>
-                <label>Weekly rate (£)</label><input id="carrier_search_input"  name="rate" value="<?php echo $assoc['Rate']; ?>" maxlength="6" oninput="data_input(this)"/> <br/>
+                <label>Weekly rate (£)</label><input id="carrier_search_input"  name="rate" value="<?php echo $assoc['Rate']; ?>" maxlength="7" oninput="data_input(this)"/> <br/>
                 <input type="submit" name="update" value="Update"></input><br/> 
             </form>
         </div>
