@@ -58,7 +58,7 @@ and open the template in the editor.
         <div id="headingColour">
             <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
         </div>   
-        <a href="index.php">Register</a>
+        <a href="register.php">Register</a>
         <h3>Login details</h3>
         <div id="register">
             <form action="mysql.php" name='myForm'  method="post" enctype="multipart/form-data">

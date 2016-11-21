@@ -58,7 +58,7 @@ and open the template in the editor.
         <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
         <div id="backgroundLayer"></div>
         <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.xhtml" class="homeLink">Brighton and Hove Agency</a></h1> 
+            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
         </div>
         <a href="login.php">Sign in</a>
         <h3>Account registration</h3>
