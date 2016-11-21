@@ -103,7 +103,7 @@ function browse($iterator) {
     for ($i = 0; $i < count($images); $i++) {
 //        var_dump($images[$i]['img']);
         if (isset($images[$i]['img'])) {
-            $table.= "<img src='" . $images[$i]['img'] . "'/>";
+            $table.= "<img src='" . $images[$i]['img'] . "' width=30% height=30%/>";
         }
     }
     $table.= "</div><br/>"

@@ -32,7 +32,7 @@ function login_user($username, $password) {
 //    }
 //    $row = mysqli_fetch_assoc($result);
     if ((PassHash::check_password($assoc['Password_'], $password))) {
-        $_SESSION['user'] = $username;
+        $_SESSION['user'] = $assoc['Username'];
         $_SESSION['userid'] = $assoc['id'];
         $_SESSION['verificationCode'] = $assoc['vCode'];
         setcookie('username', $username, time() + (86400 * 30), "/"); // 86400 = 1 day
