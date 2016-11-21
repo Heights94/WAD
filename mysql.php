@@ -17,7 +17,7 @@ session_start();
 
 if (isset($_POST["register"])) {
     if (validate_name() && validate_password() && validate_email() && validate_captcha()) { //CHECK FOR DUPLICATE EMAIL?
-        if (new_username($_POST["userName"])) {
+        if (new_username($_POST["userName"]) && new_email($_POST["email"])) {
             register_user($_POST["userName"], $_POST["password"], $_POST["email"]);
         }
     } else {

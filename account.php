@@ -61,7 +61,24 @@ function new_username($username) {
         mysqli_close($conn);
         return false;
     } else {
-        echo "Username has been created!";
+        echo "Username is unique!<br/>";
+        mysqli_close($conn);
+        return true;
+    }
+}
+
+function new_email($email) {
+    $conn = sql_connection();
+    $stmt = $conn->prepare("Select * from reg_users where Email = ?");
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        echo "Email already in use.";
+        mysqli_close($conn);
+        return false;
+    } else {
+        echo "Email has been created!";
         mysqli_close($conn);
         return true;
     }
