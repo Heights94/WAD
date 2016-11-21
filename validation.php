@@ -54,7 +54,7 @@ function validate_property_fields($var) {
 
 function validate_rate(){
     if (!preg_match("/^[0-9]+(\.[0-9]{1,2})?$/", $_POST["rate"]) || $_POST["rate"] === '') {
-        echo "Only numbers between 0.00 to 9999.99 are allowed for the Weekly rate";
+        echo "Only numbers between 0.00 to 999.99 are allowed for the Weekly rate";
         return false;
     } else {
 //        echo "Good job!";
@@ -64,7 +64,7 @@ function validate_rate(){
 
 function validate_alt() {
     $image_description = $_POST["alt_text"];
-    if (!preg_match("/^[a-zA-Z0-9\!. ]*$/", $image_description) || $image_description === '') {
+    if (!preg_match("/^[a-zA-Z0-9\. ]*$/", $image_description) || $image_description === '') {
         echo "Please add a appropiate description<br/>";
         return false;
     } else {

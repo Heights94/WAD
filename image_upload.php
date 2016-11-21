@@ -102,7 +102,7 @@ and open the template in the editor.
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 <label for="fileToUpload">Property image </label>
                 <input type="file" name="fileToUpload" id="fileToUpload"/>
-                <label>Description of image</label><input id="carrier_search_input"  name="alt_text" oninput="data_input(this)"/><br/>
+                <label>Description of image</label><input id="carrier_search_input"  name="alt_text" maxlength="20" oninput="data_input(this)"/><br/>
                 <input type="submit" name="upload" value="Upload"></input>
             </form>
 

@@ -72,7 +72,7 @@ and open the template in the editor.
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
                 </select> <br/>
-                <label>Weekly rate (£)</label><input id="carrier_search_input"  name="rate" oninput="data_input(this)"/> <br/>
+                <label>Weekly rate (£)</label><input id="carrier_search_input"  name="rate" maxlength="6" oninput="data_input(this)"/> <br/>
                 <input type="submit" name="submit" value="Submit"></input><br/> 
             </form>
         </div>
