@@ -23,20 +23,13 @@ and open the template in the editor.
     <head>
         <title>Brighton and & Hove Agency</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
-
-        <link rel="stylesheet" href="ammap/ammap.css" type="text/css" media="all" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript"></script>
+        <script src="./js/cookies.js?v=1.08" type="text/javascript"></script>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
-        <link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>
+        <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>-->
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
-        <link rel="stylesheet" href="css/input.css?v=1.07"/>
-        <link rel="stylesheet" href="css/background.css?v=1.07"/>
-        <link rel="stylesheet" href="css/heading.css?v=1.07"/> 
-        <link rel="stylesheet" href="css/table.css?v=1.07"/> 
-        <link rel="stylesheet" href="css/main_content.css?v=1.07"/>
-        <link rel="stylesheet" href="css/container.css?v=1.07"/>
-        <link rel="stylesheet" href="css/bootstrap.css?v=1.07"/>
         <meta charset="UTF-8"/>
     </head>
     <body>
