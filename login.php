@@ -3,8 +3,8 @@
 session_start();
 echo "Welcome " . $_SESSION['user'];
 
-if (isset($_SESSION['user'])) {//If already logged in, redirect to browse.php.
-    header("Location: browse.php");
+if (isset($_SESSION['user'])) {//If already logged in, redirect to index.php.
+    header("Location: index.php");
     exit;
 }
 ?>
@@ -56,7 +56,7 @@ and open the template in the editor.
         <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
         <div id="backgroundLayer"></div>
         <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.xhtml" class="homeLink">Brighton and Hove Agency</a></h1> 
+            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
         </div>   
         <a href="index.php">Register</a>
         <h3>Login details</h3>

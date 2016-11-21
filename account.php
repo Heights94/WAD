@@ -40,7 +40,7 @@ function login_user($username, $password) {
             header("Location: verification.php");
             exit;
         } else {
-            header("Location: browse.php");
+            header("Location: index.php");
             mysqli_close($conn);
             exit;
         }

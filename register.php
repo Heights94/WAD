@@ -1,20 +1,21 @@
-<?php
+<?php 
 session_start();
-/* Checking user status here is unique, since a verified user has no purpose to verify themselves again. */
-if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] === '0') {//If the user is logged in, and if they are a verified user already..
-    header("Location: index.php"); //..redirect them to index.php.
-    exit;
-} else if(!isset($_SESSION['user'])){//If the user is not logged in..
-    header("Location: login.php");//..redirect them to login.php
+if (isset($_SESSION['user'])) {//If already logged in, redirect to index.php.
+    header("Location: index.php");
     exit;
 }
+
+// echo substr(sha1(uniqid(rand())), 1,5);  
+
 ?>
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -59,13 +60,21 @@ and open the template in the editor.
         <div id="headingColour">
             <h1 id="CDT_Heading" ><a href="index.xhtml" class="homeLink">Brighton and Hove Agency</a></h1> 
         </div>
-        <h3>Account verification </h3>
+        <a href="login.php">Sign in</a>
+        <h3>Account registration</h3>
         <div id="register">
             <form action="mysql.php" method="post" enctype="multipart/form-data">
-                <label>Verification code</label><input id="carrier_search_input" type="text"  name="vcode" oninput="data_input(this)"/> <br/>
-                <input type="submit" name="verify" value="Submit"></input><br/>
+                <label>Username</label><input id="carrier_search_input" type="text"  name="userName" oninput="data_input(this)"/> <br/>
+                <label>Password</label><input id="carrier_search_input" type="password" name="password" oninput="data_input(this)"/> <br/>
+                <label>Email address</label><input id="carrier_search_input" type="text"  name="email" oninput="data_input(this)"/><br/>
+                <label>Enter Image Text</label><input name="captcha" type="text" maxlength="9"></input>
+                <img src="captchaL.php" /><br/>
+                <input type="submit" name="register" value="Register"></input><br/>
+                <!--<img src="captcha.php" />-->
             </form>
         </div>
+        
+        
 
 
     </body>
