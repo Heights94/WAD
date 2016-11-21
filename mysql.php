@@ -33,6 +33,10 @@ if (isset($_POST["login"])) {
     login_user($_POST["userName"], $_POST["password"]);
 }
 
+if (isset($_POST["logout"])) {
+    logout_user();
+}
+
 if (isset($_POST["submit"])) {
     if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"]) && new_property($_POST["address"])) {
         add_property();

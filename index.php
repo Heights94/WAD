@@ -16,8 +16,8 @@ and open the template in the editor.
     <head>
         <title>Brighton and & Hove Agency</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript"></script>
- <script src="./js/cookies.js?v=1.08" type="text/javascript"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js" type="text/javascript"></script>
+        <script src="./js/cookies.js?v=1.08" type="text/javascript"></script>
         <link rel="stylesheet" href="ammap/ammap.css" type="text/css" media="all" />
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.5/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css"/>
@@ -39,7 +39,16 @@ and open the template in the editor.
         <div id="headingColour">
             <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
         </div>
-        <a href="accommodation.php">Add new Property</a>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
+            <input type='submit' name='logout' value='Logout'/>
+            </form>
+            <!-- <a href='accommodation.php'>Add Property</a> CLUTTERS VIEW A LITTLE-->
+            <a href='propertylist.php'>Manage Properties</a>
+            </div>";
+        }
+        ?>
         <h3>View Properties</h3>
 
         <form action="index.php" method="post" enctype="multipart/form-data">

@@ -44,9 +44,18 @@ and open the template in the editor.
         <div id="backgroundLayer"></div>
         <div id="headingColour">
             <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
-        </div>
-        <a href="accommodation.php">Add new Property</a>
-        <h3>View Properties</h3>
+        </div>     
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
+            <input type='submit' name='logout' value='Logout'/>
+            </form>
+            <a href='accommodation.php'>Add Property</a>
+            <a href='index.php'>View Properties</a>
+            </div>";
+        }
+        ?>
+        <h3>Manage Properties</h3>
         <?php
         if (isset($_SESSION['user'])) {
             //NOTE: IN THE FUTURE, LOGIN WILL TAKE YOU TO THE BROWSE PAGE. 

@@ -50,6 +50,12 @@ function login_user($username, $password) {
     }
 }
 
+function logout_user() {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+}
+
 function new_username($username) {
     $conn = sql_connection();
     $stmt = $conn->prepare("Select * from reg_users where Username = ?");

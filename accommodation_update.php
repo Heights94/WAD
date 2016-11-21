@@ -64,7 +64,17 @@ and open the template in the editor.
         <div id="backgroundLayer"></div>
         <div id="headingColour">
             <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
-        </div>    
+        </div>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
+            <input type='submit' name='logout' value='Logout'/>
+            </form>
+            <a href='propertylist.php'>Manage Properties</a>
+            <a href='index.php'>View Properties</a>
+            </div>";
+        }
+        ?>
         <h3>Update Accommodation details </h3>
         <div id="register">
             <form action="mysql.php" method="post" enctype="multipart/form-data">
