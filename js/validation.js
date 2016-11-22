@@ -12,7 +12,7 @@ function validateLogin() {
             $("#validate").text("*Please fill in the username field");
         } else if (password === '') {
             $("#validate").text("*Please fill in the password field");
-        } 
+        }
 //        sweetAlert("Oops...", "Please fill in both your Username and Password!", "info");
 //        document.getElementById("Login").disabled = false;
         return false;
@@ -33,24 +33,20 @@ function validateLogin() {
     }
 }
 
-function validateRegister(visibile) {
+function validateRegister() {
     var username = $("#userName").val();
     var password = $("#password").val();
     var email = $("#email").val();
     var captcha = $("#captcha").val();
     if (username === '' || password === '' || email === '' || captcha === '') {
-        if (visibile && username === '') {
+        if (username === '') {
             $("#validate").text("*Please fill in the username field");
-        } else if (visibile && password === '') {
+        } else if (password === '') {
             $("#validate").text("*Please fill in the password field");
-        } else if (visibile && email === '') {
+        } else if (email === '') {
             $("#validate").text("*Please fill in the email field");
-        } else if (visibile && captcha === '') {
+        } else if (captcha === '') {
             $("#validate").text("*Please fill in the captcha field");
-        } else if (visibile && !validateEmail(email)) {
-             $("#validate").text("*Email is not in the appropiate format!");
-//        sweetAlert("Oops...", "Email is not in the appropiate format!", "info");
-            return false;
         } else {
             $("#validate").text("");
         }
@@ -59,16 +55,22 @@ function validateRegister(visibile) {
         return false;
 
     } else {
-        $.ajax({
-            type: "post",
-            url: "mysql.php",
-            data: "register=Register" + "&userName=" + username + "&password=" + password + "&email=" + email + "&captcha=" + captcha,
-            success: function (data) {
-                window.location = 'verification.php';
-                return false;
-            }
-        });
-        return false;
+        if (!validateEmail(email)) {
+            $("#validate").text("*Email is not in the appropiate format!");
+            return false;
+//        sweetAlert("Oops...", "Email is not in the appropiate format!", "info");
+        }
+        $("#validate").text("");
+//        $.ajax({
+//            type: "post",
+//            url: "mysql.php",
+//            data: "register=Register" + "&userName=" + username + "&password=" + password + "&email=" + email + "&captcha=" + captcha,
+//            success: function (data) {
+//                window.location = 'verification.php';
+//                return false;
+//            }
+//        });
+        return true;
     }
 }
 
