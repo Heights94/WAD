@@ -29,6 +29,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
         <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>-->
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
         <meta charset="UTF-8"/>
@@ -42,9 +43,10 @@ and open the template in the editor.
         <a href="register.php">Register</a>
         <h3>Login details</h3>
         <div id="register">
-            <form action="mysql.php" name='myForm'  onsubmit="return validate_login()" method="post" enctype="multipart/form-data">
-                <label>Username</label><input id="userName" type="text"  name="userName"/> <br/>
-                <label>Password</label><input id="password" type="password" name="password" oninput="data_input(this)"/> <br/>
+            <form action="mysql.php" name='myForm'  onsubmit="return validateLogin()" method="post" enctype="multipart/form-data">
+                <label>Username</label><input id="userName" type="text"  name="userName" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
+                <label>Password</label><input id="password" type="password" name="password" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
+                 <p id="validate"></p>
                 <input type="submit" name="login" value="Login"></input><br/> 
             </form>
         </div>

@@ -14,6 +14,7 @@ function register_user($username, $password, $email_address) {
     $stmt->bind_param('ssss', $username, $pass_hash, $email_address, $verification_code);
     if ($stmt->execute()) {
         send_email($verification_code, $username);
+        login_user($username, $password);
         echo "New record created successfully";
     } else {
         echo "Error: <br>" . $conn->error;
