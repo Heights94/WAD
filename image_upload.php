@@ -21,9 +21,6 @@ if (isset($_SESSION['verificationCode']) && $_SESSION['verificationCode'] !== '0
 } else if (isset($_SESSION['propertyAdded'])) {//If the user has just added a property, and wants to upload an image for it..
     get_propertyid($_SESSION["userid"]); //..get the property for the last logged in user. THIS IS THE ONLY PLACE THIS IS REQUIRED.
 }
-
-echo "UserID: " . $_SESSION["userid"] . " <br/>";
-echo "PropertyID: " . $_SESSION["propertyid"] . " <br/>";
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
@@ -45,59 +42,55 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
-        <div id="backgroundLayer"></div>
-        <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
-        </div>
-        <?php
-        if (isset($_SESSION['user'])) {
-            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
-            <input type='submit' name='logout' value='Logout'/>
-            </form>
-            <a href='propertylist.php'>Manage Properties</a>
-            <a href='index.php'>View Properties</a>
-            </div>";
-        }
-        ?>
-        <h3>Property images </h3>
+        <div class="container">
+            <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
+            <div id="backgroundLayer"></div>
+            <div id="headingColour">
+                <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+            </div>
+            <div class='links-div'><form action='mysql.php' method='post' enctype='multipart/form-data'>
+                    <input class='links logout' type='submit' name='logout' value='Logout'/>
+                </form>
+                <a  class='links' href='propertylist.php'>Manage Properties</a>
+                <a  class='links' href='index.php'>View Properties</a>
+            </div>
+            <h3>Property images </h3>
 
-        <form action="mysql.php" method="post" enctype="multipart/form-data">
-            <?php
-            if (isset($_SESSION['propertyid']) && !empty($assoc)) {
+            <form action="mysql.php" method="post" enctype="multipart/form-data">
+                <?php
+                if (isset($_SESSION['propertyid']) && !empty($assoc)) {
 //        var_dump($assoc[0]['img']); 
-                for ($i = 0; $i < count($assoc); $i++) {
+                    for ($i = 0; $i < count($assoc); $i++) {
 //            var_dump($assoc[$i]['img']); 
-                    echo "<br/><input type='radio' name='image_radio' value='" . $assoc[$i]['img'] . "'/>";
-                    echo "<img src='" . $assoc[$i]['img'] . "' alt='" . $assoc[$i]['alt'] . "'width='10%' height='10%'/>";
+                        echo "<br/><input class='image-radio' type='radio' name='image_radio' value='" . $assoc[$i]['img'] . "'/>";
+                        echo "<img class='uploaded-image' src='" . $assoc[$i]['img'] . "' alt='" . $assoc[$i]['alt'] . "'width='30%' height='30%'/>";
+                    }
+                    echo "<br/><input class='curved-button' type='submit' name='delete_image' value='Delete'></input><br/>";
                 }
-                echo "<br/><input type='submit' name='delete_image' value='Delete'></input><br/>";
-            }
 //        echo "<img src=$image width='10%' height='10%'/><br/>";
-            ?> 
+                ?> 
 
-        </form>
-        <!--        
-                <img src="<?php // echo $assoc['img'];         ?>" width="10%" height="10%"/><br/>
-                <input type='radio' name='radio' value='<?php // echo $assoc['id'];         ?>"'/>-->
-
-
-        <div>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <label for="fileToUpload">Property image </label>
-                <input type="file" name="fileToUpload" id="fileToUpload"/>
-                <label>Description of image</label><input   name="alt_text" maxlength="20" oninput="data_input(this)"/><br/>
-                <input type="submit" name="upload" value="Upload"></input>
             </form>
+            <!--        
+                    <img src="<?php // echo $assoc['img'];            ?>" width="10%" height="10%"/><br/>
+                    <input type='radio' name='radio' value='<?php // echo $assoc['id'];            ?>"'/>-->
 
+
+            <div>
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+                    <label for="fileToUpload">Property image </label>
+                    <input  type="file" name="fileToUpload" id="fileToUpload"/>
+                    <label>Description of image</label><input class="input-fields" type="text"  name="alt_text" maxlength="20" oninput="data_input(this)"/><br/>
+                    <input type="submit" class='curved-button' name="upload" value="Upload"></input>
+                </form>
+            </div>
         </div>
-
-
     </body>
-
 </html>
 
 

@@ -4,7 +4,7 @@ function add_image($image_name) {
     $conn = sql_connection();
     $stmt = $conn->prepare("INSERT INTO images VALUES ('DEFAULT',?,?,?,?)");
     $img = "./uploads/$image_name";
-    $stmt->bind_param('isss', $_SESSION['propertyid'], $image_name, $_POST['alt_text'], $img);
+    $stmt->bind_param('isss', $_SESSION['propertyid'], $image_name, $_POST['alt_text'], $img);//Need to alter size in MySQL table.
     if ($stmt->execute()) {
         header("Location: image_upload.php");
         mysqli_close($conn);
