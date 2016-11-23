@@ -53,13 +53,13 @@ function view_property($userid) {
     $id = 'id';
     $echo = "<?php echo 'This just happened..'; ?>";
     $result = $stmt->get_result();
-    $table = " <form action='mysql.php' method='post'><input type='submit' name='edit' value='Edit'/><input type='submit' name='delete' value='Delete'/><input type='submit' name='manage_images' value='Manage images'/><table class='tablesorter table-hover' id='carrierTable' align='center'>" . "<thead><tr><th>ID</th><th>Area</th><th>Address</th><th>Bedrooms</th><th>Weekly rate (£)</th></tr></thead>" . "<tbody>";
+    $table = " <form action='mysql.php' method='post'><div class='buttons-div'><input type='submit' class='curved-button' name='edit' value='Edit'/><input type='submit' class='curved-button' name='delete' value='Delete'/><input type='submit' class='curved-button' name='manage_images' value='Manage images'/></div><div class='table-div'><table class='tablesorter table-hover' id='carrierTable' align='center'>" . "<thead><tr><th>ID</th><th>Area</th><th>Address</th><th>Bedrooms</th><th>Weekly rate (£)</th></tr></thead>" . "<tbody>";
     while ($assoc = $result->fetch_assoc()) {
         $table.="<tr>";
         $table.= "<td>" . $assoc['id'] . "</td>" . "<td>" . $assoc['Area'] . "</td>" . "<td>" . $assoc['Address'] . "</td>" . "<td>" . $assoc['Bedrooms'] . "</td>" . "<td>" . $assoc['Rate'] . "</td>" . "<td><input type='radio' name='radio' value='" . $assoc['id'] . "'/></td>";
         $table.="</tr>";
     }
-    $table.= "</tbody></table> </form>";
+    $table.= "</tbody></table></div> </form>";
     echo "$table";
     mysqli_close($conn);
 }

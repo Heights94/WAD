@@ -1,0 +1,96 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-Nov-2016, 00:08:56
+    Author     : moham
+*/
+
+table{
+    margin-left: auto;
+    margin-right: auto;
+    alignment-adjust: central;
+    max-width: 600px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    padding:5px;
+}
+.table-div{
+    height:100%;
+    max-height:300px;
+    overflow-y:auto;
+    width:620px;
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+tr:nth-child(odd) {background: #e2f0ff}
+tr:nth-child(even) {background: white}
+tr:not(:first-child):hover {
+    background: rgba(47, 150, 255,0.9);
+}
+
+td, th {
+    font-size: 1em;
+    border: 1px solid #3399ff;
+    padding: 3px 7px 2px 7px;
+}
+
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background: rgb(106, 178, 250);
+    color: #ffffff;
+}
+
+th:hover{
+    cursor:pointer;
+    background: #bfddec;
+    color:#1A61A9;
+}
+
+td.alt{
+    color: #000000;
+    background-color:#e2f0ff;
+}
+
+table, th, td {
+    text-align: center;
+    font-size: 16px;
+}
+
+table.table-hover #low_level_view:hover td {
+    background-color:#d7d6fb;
+}
+
+td{
+    width: auto;
+}
+
+table.tablesorter thead tr .header {
+	background-image: url(./images/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(./images/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(./images/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp:hover {
+color:white;
+background-color: #8dbdd8;
+}
