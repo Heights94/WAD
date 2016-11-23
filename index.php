@@ -23,9 +23,12 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>-->
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
         <meta charset="UTF-8"/>
     </head>
     <body>
+        <div class="container">
         <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
         <div id="backgroundLayer"></div>
         <div id="headingColour">
@@ -33,19 +36,19 @@ and open the template in the editor.
         </div>
         <?php
         if (isset($_SESSION['user'])) {
-            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
-            <input type='submit' name='logout' value='Logout'/>
+            echo "<div class='links-div'><form action='mysql.php' method='post' enctype='multipart/form-data'>
+            <input class='links logout' type='submit' name='logout' value='Logout'/>
             </form>
-            <!-- <a href='accommodation.php'>Add Property</a> CLUTTERS VIEW A LITTLE-->
-            <a href='propertylist.php'>Manage Properties</a>
+            <!-- <a class='links' href='accommodation.php'>Add Property</a> CLUTTERS VIEW A LITTLE-->
+            <a class='links' href='propertylist.php'>Manage Properties</a>
             </div>";
         }
         ?>
         <h3>View Properties</h3>
 
         <form action="index.php" method="post" enctype="multipart/form-data">
-            <label>Search</label><input id="searchBox" type="text"  name="wordSearched" /> <br/>               
-            <input type="submit" name="search" value="Search"></input><br/>
+            <label>Search</label><input id="searchBox" class="input-fields" type="text"  name="wordSearched" />               
+            <input type="submit" class="curved-button" name="search" value="Search"></input><br/>
         </form>
         <?php
         if (isset($_POST["search"])) {
@@ -59,6 +62,7 @@ and open the template in the editor.
         <script>
             $('#searchBox').val(getCookie('searchCookie'));
         </script>
+        </div>
     </body>
 
 </html>

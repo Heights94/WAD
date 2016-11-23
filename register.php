@@ -28,39 +28,41 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>-->
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
-        
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js" type="text/javascript"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"/>
-        
+
         <link rel="stylesheet" href="./css/style.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
-        <div id="backgroundLayer"></div>
-        <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+        <div class="container">
+            <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
+            <div id="backgroundLayer"></div>
+            <div id="headingColour">
+                <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+            </div>
+            <div class="links-div">
+                <a class="links" href="login.php">Sign in</a>
+            </div>
+            <h3>Account registration</h3>
+            <div id="register">
+                <form action="mysql.php" name="myForm" onsubmit="return validateRegister()" method="post" enctype="multipart/form-data">
+                    <label>Username</label><input type="text" id="userName" class="input-fields" name="userName" onfocus="validateRegister()" onblur="validateRegister()"/> <br/>
+                    <label>Password</label><input type="password" id="password" class="input-fields" name="password" onfocus="validateRegister()" onblur="validateRegister()"/> <br/>
+                    <label>Email address</label><input type="text"  id="email" class="input-fields" name="email" onfocus="validateRegister()" onblur="validateRegister()"/><br/>
+                    <label>Enter Image Text</label><input id="captcha" class="input-fields" name="captcha" type="text" maxlength="9" onfocus="validateRegister()" onblur="validateRegister()"></input>
+                    <img src="captchaL.php" /><br/>
+                    <p id="validate"></p>
+                    <input type="submit" class="curved-button" name="register" value="Register"></input><br/>
+                    <!--<img src="captcha.php" />-->
+                </form>
+            </div>
+
         </div>
-        <a href="login.php">Sign in</a>
-        <h3>Account registration</h3>
-        <div id="register">
-            <form action="mysql.php" name="myForm" onsubmit="return validateRegister()" method="post" enctype="multipart/form-data">
-                <label>Username</label><input type="text" id="userName" name="userName" onfocus="validateRegister()" onblur="validateRegister()"/> <br/>
-                <label>Password</label><input type="password" id="password" name="password" onfocus="validateRegister()" onblur="validateRegister()"/> <br/>
-                <label>Email address</label><input type="text"  id="email" name="email" onfocus="validateRegister()" onblur="validateRegister()"/><br/>
-                <label>Enter Image Text</label><input id="captcha" name="captcha" type="text" maxlength="9" onfocus="validateRegister()" onblur="validateRegister()"></input>
-                <img src="captchaL.php" /><br/>
-                <p id="validate"></p>
-                <input type="submit" name="register" value="Register"></input><br/>
-                <!--<img src="captcha.php" />-->
-            </form>
-        </div>
-
-
-
-
     </body>
 
 </html>

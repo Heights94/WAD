@@ -1,5 +1,57 @@
 
 #validate{
+    font-family: verdana;
     color: red;
     font-weight: bold;
+}
+
+h1{
+    text-align: center;
+}
+
+.links{
+    font-size: 19px;
+    border:none;
+}
+
+body{
+    margin-bottom: 150px;
+}
+
+.property-div{
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    background-color: rgba(96, 117, 164, 0.32);
+    margin-bottom: 20px;
+    padding-bottom: 10px;    
+}
+
+.property-image{
+    text-align: center;
+}
+
+.property-listing{
+    width:100%;
+    max-width: 300px;
+    margin-top: 10px;
+    margin-left: 15px;
+    border-radius:15px; 
+    -moz-border-radius:15px; 
+    -webkit-border-radius:15px; 
+    background-color:#f2f2f2;
+}
+
+.property-labels{
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.property-text{
+    font-size:15px;
+    display: inline;
+}
+.middle-image{
+    margin-left:15px;
+    margin-right:15px;
 }

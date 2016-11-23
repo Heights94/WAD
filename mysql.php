@@ -47,8 +47,8 @@ if (isset($_POST["submit"])) {
 
 if (isset($_POST["update"])) {
     if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"]) && new_property($_POST["address"])) {
-            update_property($_SESSION["propertyid"]);
-            header("Location: propertylist.php");
+        update_property($_SESSION["propertyid"]);
+        header("Location: propertylist.php");
     }
 }
 
@@ -102,21 +102,27 @@ function sql_connection() {
 }
 
 function browse($iterator) {
-    $table = "<div><br/><div id='property_image'>";
+    $table = "<div><div class='property-div'><br/><div class='property-image'>";
     $images = get_image($iterator['id']);
+    $middle_image = "";
     for ($i = 0; $i < count($images); $i++) {
 //        var_dump($images[$i]['img']);
+        if ($i === 1) {
+            $middle_image = "class='middle-image'";
+        } else {
+            $middle_image = "";
+        }
         if (isset($images[$i]['img'])) {
-            $table.= "<img src='" . $images[$i]['img'] . "' width=30% height=30%/>";
+            $table.= "<img src='" . $images[$i]['img'] . "' $middle_image width=30% height=30%/>";
         }
     }
-    $table.= "</div><br/>"
-            . "<label>Area:</label>" . $iterator['Area'] . "<br/>"
-            . "<label>Address:</label>" . $iterator['Address'] . "<br/>"
-            . "<label>Bedrooms:</label>s" . $iterator['Bedrooms'] . "<br/>"
-            . "<label>Rate:</label>" . $iterator['Rate'] . "<br/>";
+    $table.= "</div><div class='property-listing'><br/>"
+            . "<label class='property-labels'>Area:</label><p class='property-text'> " . $iterator['Area'] . "</p><br/>"
+            . "<label class='property-labels'>Address:</label><p class='property-text'> " . $iterator['Address'] . "</p><br/>"
+            . "<label class='property-labels'>Bedrooms:</label><p class='property-text'> " . $iterator['Bedrooms'] . "</p><br/>"
+            . "<label class='property-labels'>Rate:</label><p class='property-text'> " . $iterator['Rate'] . "</p><br/>";
 
-    $table.= "</div>";
+    $table.= "</div></div>";
 
     return "$table";
 }
@@ -161,13 +167,13 @@ function count_pages($like_clause) {
         $end = min(($offset + $limit), $total->num_rows);
 
         // The "back" link
-        $prevlink = ($page > 1) ? '<a href="?page=1" title="First page">&laquo;</a> <a href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
+        $prevlink = ($page > 1) ? '<a class="page-links" href="?page=1" title="First page">&laquo;</a> <a class="page-links" href="?page=' . ($page - 1) . '" title="Previous page">&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
 
         // The "forward" link
-        $nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
+        $nextlink = ($page < $pages) ? '<a class="page-links" href="?page=' . ($page + 1) . '" title="Next page">&rsaquo;</a> <a class="page-links" href="?page=' . $pages . '" title="Last page">&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
 
         // Display the paging information
-        echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total->num_rows, ' results ', $nextlink, ' </p></div>';
+        echo '<div id="paging"><p id="pageNo">', $prevlink, ' Page ', $page, ' of ', $pages, ' pages, displaying ', $start, '-', $end, ' of ', $total->num_rows, ' results ', $nextlink, ' </p></div>';
 
         // Prepare the paged query
         $stmt = $dbh->prepare('

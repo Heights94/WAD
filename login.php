@@ -1,8 +1,6 @@
 <?php
 //require 'captcha.php';
 session_start();
-echo "Welcome " . $_SESSION['user'];
-
 if (isset($_SESSION['user'])) {//If already logged in, redirect to index.php.
     header("Location: index.php");
     exit;
@@ -30,38 +28,35 @@ and open the template in the editor.
         <!--<link rel="stylesheet" type="text/css" href="dist/sweetalert.css"/>-->
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
         <link rel="stylesheet" href="./css/style.css"/>
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
+<!--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
-        <div id="backgroundLayer"></div>
-        <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
-        </div>   
-        <a href="register.php">Register</a>
-        <h3>Login details</h3>
-        <div id="register">
-            <form action="mysql.php" name='myForm'  onsubmit="return validateLogin()" method="post" enctype="multipart/form-data">
-                <label>Username</label><input id="userName" type="text"  name="userName" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
-                <label>Password</label><input id="password" type="password" name="password" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
-                 <p id="validate"></p>
-                <input type="submit" name="login" value="Login"></input><br/> 
-            </form>
+        <div class="container">
+            <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
+            <div id="backgroundLayer"></div>
+            <div id="headingColour">
+                <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+            </div>   
+            <div class="links-div">
+            <a class="links" href="register.php">Register</a>
+            </div>
+            <h3>Login details</h3>
+            <div id="login" >
+                <form action="mysql.php" name='myForm'  onsubmit="return validateLogin()" method="post" enctype="multipart/form-data">
+                    <label for="userName">Username </label><input id="userName" class="input-fields" type="text"  name="userName" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
+                    <label for="password">Password</label><input id="password"  class="input-fields"type="password" name="password" onfocus="validateLogin(true)" onblur="validateLogin(false)"/> <br/>
+                    <p id="validate"></p>
+                    <input type="submit" class="curved-button" name="login" value="Login"></input><br/> 
+                </form>
+            </div>
+
+            <script>
+                $('#userName').val(getCookie('username'));
+            </script>
         </div>
-
-        <script>
-            $('#userName').val(getCookie('username'));
-            function validateForm() {
-                var x = $('#userName').val();
-                if (x === "") {
-                    alert("YOOO");
-                    return false;
-                }
-            }
-        </script>
-
     </body>
 
 </html>
