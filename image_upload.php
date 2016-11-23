@@ -85,7 +85,7 @@ and open the template in the editor.
                 <input type='radio' name='radio' value='<?php // echo $assoc['id'];         ?>"'/>-->
 
 
-        <div id="register">
+        <div>
             <form action="upload.php" method="post" enctype="multipart/form-data">
                 <label for="fileToUpload">Property image </label>
                 <input type="file" name="fileToUpload" id="fileToUpload"/>

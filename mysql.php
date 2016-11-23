@@ -37,6 +37,11 @@ if (isset($_POST["logout"])) {
     logout_user();
 }
 
+if (isset($_POST["goToLogin"])) {
+        header("Location: login.php");
+        exit;
+}
+
 if (isset($_POST["submit"])) {
     if (validate_rate() && validate_property_fields($_POST["area"]) && validate_property_fields($_POST["address"]) && new_property($_POST["address"])) {
         add_property();

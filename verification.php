@@ -29,23 +29,31 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
+        <meta charset="UTF-8"/>
         <meta charset="UTF-8"/>
     </head>
-    <body>
-        <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
-        <div id="backgroundLayer"></div>
-        <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+    <body>       
+        <div class="container">
+            <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
+            <div id="backgroundLayer"></div>
+            <div id="headingColour">
+                <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+            </div>   
+            <div class = 'links-div'><form action = 'mysql.php' method = 'post' enctype = 'multipart/form-data'>
+                    <input class = 'links logout' type = 'submit' name = 'logout' value = 'Logout'/>
+                </form>
+                <a class = 'links' href = 'index.php'>View Properties</a>
+            </div>
+            <h3>Account verification </h3>
+            <div>
+                <form action="mysql.php" method="post" enctype="multipart/form-data">
+                    <label>Verification code</label><input type="text"  class="input-fields" name="vcode" oninput="data_input(this)"/> <br/>
+                    <input type="submit" class='curved-button' name="verify" value="Submit"></input><br/>
+                </form>
+            </div>
         </div>
-        <h3>Account verification </h3>
-        <div id="register">
-            <form action="mysql.php" method="post" enctype="multipart/form-data">
-                <label>Verification code</label><input type="text"  name="vcode" oninput="data_input(this)"/> <br/>
-                <input type="submit" name="verify" value="Submit"></input><br/>
-            </form>
-        </div>
-
-
     </body>
 
 </html>
