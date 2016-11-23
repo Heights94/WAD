@@ -38,8 +38,8 @@ if (isset($_POST["logout"])) {
 }
 
 if (isset($_POST["goToLogin"])) {
-        header("Location: login.php");
-        exit;
+    header("Location: login.php");
+    exit;
 }
 
 if (isset($_POST["submit"])) {
@@ -110,15 +110,19 @@ function browse($iterator) {
     $table = "<div><div class='property-div'><br/><div class='property-image'>";
     $images = get_image($iterator['id']);
     $middle_image = "";
-    for ($i = 0; $i < count($images); $i++) {
+    if (empty($images)) {
+        $table.="<img src='images/no-image.png' $middle_image width=30% height=30%/>";
+    } else {
+        for ($i = 0; $i < count($images); $i++) {
 //        var_dump($images[$i]['img']);
-        if ($i === 1) {
-            $middle_image = "class='middle-image'";
-        } else {
-            $middle_image = "";
-        }
-        if (isset($images[$i]['img'])) {
-            $table.= "<img src='" . $images[$i]['img'] . "' $middle_image width=30% height=30%/>";
+            if ($i === 1) {
+                $middle_image = "class='middle-image'"; //2md image makes space between the 1st and 3rd image. 
+            } else {
+                $middle_image = "";
+            }
+            if (isset($images[$i]['img'])) {
+                $table.= "<img src='" . $images[$i]['img'] . "' $middle_image width=30% height=30%/>";
+            }
         }
     }
     $table.= "</div><div class='property-listing'><br/>"
