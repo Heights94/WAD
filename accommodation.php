@@ -32,40 +32,43 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.23.1.css"/>
         <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"/>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/> -->
+        <link rel="stylesheet" href="./css/style.css"/>
+        <link rel="stylesheet" href="./css/input.css"/>
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
-        <div id="backgroundLayer"></div>
-        <div id="headingColour">
-            <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
-        </div>
-        <?php
-        if (isset($_SESSION['user'])) {
-            echo "<div><form action='mysql.php' method='post' enctype='multipart/form-data'>
-            <input type='submit' name='logout' value='Logout'/>
+        <div class="container">
+            <div id="background"></div>   <!-- Having two backgrounds, allows one to overlay the other to create a tint effect. -->
+            <div id="backgroundLayer"></div>
+            <div id="headingColour">
+                <h1 id="CDT_Heading" ><a href="index.php" class="homeLink">Brighton and Hove Agency</a></h1> 
+            </div>
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo "<div class='links-div'><form action='mysql.php' method='post' enctype='multipart/form-data'>
+            <input class='links logout' type='submit' name='logout' value='Logout'/>
             </form>
-            <a href='propertylist.php'>Manage Properties</a>         
-            <a href='index.php'>View Properties</a>
+            <a class='links' href='propertylist.php'>Manage Properties</a>         
+            <a class='links' href='index.php'>View Properties</a>
             </div>";
-        }
-        ?>
-        <h3>Accommodation details </h3>
-        <div id="register">
-            <form action="mysql.php" method="post" enctype="multipart/form-data">
-                <label>Area</label><input type="text"  name="area" oninput="data_input(this)"/> <br/>
-                <label>Address</label><input   name="address" oninput="data_input(this)"/> <br/>
-                <label>Number of rooms</label><select name="rooms">
-                    <?php for ($i = 1; $i <= 10; $i++) : ?>
-                        <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                    <?php endfor; ?>
-                </select> <br/>
-                <label>Weekly rate (£)</label><input   name="rate" maxlength="7" oninput="data_input(this)"/> <br/>
-                <input type="submit" name="submit" value="Submit"></input><br/> 
-            </form>
+            }
+            ?>
+            <h3>Accommodation details </h3>
+            <div id="register">
+                <form action="mysql.php" method="post" enctype="multipart/form-data">
+                    <label>Area</label><input type="text" class="input-fields" name="area" oninput="data_input(this)"/> <br/>
+                    <label>Address</label><input   name="address" class="input-fields" oninput="data_input(this)"/> <br/>
+                    <label>Number of rooms</label><select name="rooms" class="dropdown-fields">
+                        <?php for ($i = 1; $i <= 10; $i++) : ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                        <?php endfor; ?>
+                    </select> <br/>
+                    <label>Weekly rate (£)</label><input type="text" class="input-fields" name="rate" maxlength="7" oninput="data_input(this)"/> <br/>
+                    <input type="submit" class='curved-button' name="submit" value="Submit"></input><br/> 
+                </form>
+            </div>
+
         </div>
-
-
     </body>
 
 </html>
